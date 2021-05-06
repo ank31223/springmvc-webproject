@@ -31,7 +31,7 @@ tr:hover {
 <body>
 
 	<p>
-		<a href="/springproject1/employee/getAllEmployees">EmployeeHome</a>
+		<a href="/springproject1/client/getAllClients">clientHomePage</a>
 	</p>
 	<p>
 		<a href="/springproject1"> HomePage</a>

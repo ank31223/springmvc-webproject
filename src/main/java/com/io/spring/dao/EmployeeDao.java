@@ -157,7 +157,6 @@ public class EmployeeDao {
 			}
 			i++;
 		}
-		System.out.println(employee);
 		session.update(employee);
 		tx.commit();
 		session.close();

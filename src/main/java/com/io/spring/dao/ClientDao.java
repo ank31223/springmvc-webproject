@@ -93,13 +93,14 @@ public class ClientDao {
 		session.flush();
 		Client client = (Client) session.get(Client.class, clientId);
 		
+		client.getEmployees().add(employee);
 		//client.getEmployees().add(employee);
 		
 		//session.saveOrUpdate(client);
-		tx.commit();
-		session.getTransaction().begin();
-		session.detach(employee);
-		client.getEmployees().add(employee);
+//		tx.commit();
+//		session.getTransaction().begin();
+//		session.detach(employee);
+//		client.getEmployees().add(employee);
 		tx.commit();
 		session.close();
 	}

@@ -33,7 +33,7 @@ public class ClientController {
 		List<Client> clients = clientServiceInterface.showAllClient();
 		model.addAttribute("clientList", clients);
 
-		return "/WEB-INF/views/client/clientHome.jsp";
+		return "client/clientHome";
 	}
 
 	@RequestMapping(path = "/addClient", method = RequestMethod.POST)
@@ -52,14 +52,14 @@ public class ClientController {
 	@RequestMapping("/getClientForm")
 	public String getClientForm() {
 
-		return "/WEB-INF/views/client/clientForm.jsp";
+		return "client/clientForm";
 	}
 
 	@RequestMapping("/getClientUpdateForm/{clientId}")
 	public String getClientForm(@PathVariable("clientId") String clientId, Model model) {
 		Client client = clientServiceInterface.getClientById(clientId);
 		model.addAttribute("client", client);
-		return "/WEB-INF/views/client/clientUpdateForm.jsp";
+		return "client/clientUpdateForm";
 	}
 
 	@RequestMapping("/deleteClient/{id}")
@@ -94,7 +94,7 @@ public class ClientController {
 		model.addAttribute("employeeList2", employeeList2);
 		model.addAttribute("client", client);
 
-		return "/WEB-INF/views/client/clientEmployees.jsp";
+		return "client/clientEmployees";
 	}
 
 	@RequestMapping("/removeEmployeeFromClient/{clientId}/{employeeId}")

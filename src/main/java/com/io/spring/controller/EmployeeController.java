@@ -43,7 +43,7 @@ public class EmployeeController {
 	@RequestMapping("/getEmployeeForm")
 	public String getEmployeeForm() {
 
-		return "/WEB-INF/views/employee/employeeForm.jsp";
+		return "employee/employeeForm";
 	}
 
 	@RequestMapping("/getAllEmployees")
@@ -52,7 +52,7 @@ public class EmployeeController {
 		List<Employee> employees = employeeServiceInterface.showAllEmployee();
 		model.addAttribute("employeeList", employees);
 
-		return "/WEB-INF/views/employee/employeeHome.jsp";
+		return "employee/employeeHome";
 	}
 
 	@RequestMapping("/deleteEmployee/{id}")
@@ -82,7 +82,7 @@ public class EmployeeController {
 	public String getUpdateForm(@PathVariable("id") String id, Model model) {
 		Employee employee = employeeServiceInterface.getEmployeeById(id);
 		model.addAttribute("employee", employee);
-		return "/WEB-INF/views/employee/employeeUpdateForm.jsp";
+		return "employee/employeeUpdateForm";
 	}
 
 	@RequestMapping("/employeeClients/{id}")
@@ -95,7 +95,7 @@ public class EmployeeController {
 		model.addAttribute("clientList2", clientList2);
 		model.addAttribute("employee", employee);
 
-		return "/WEB-INF/views/employee/employeeClients.jsp";
+		return "employee/employeeClients";
 	}
 
 	@RequestMapping("/addClientToEmployee/{employeeId}/{clientId}")
