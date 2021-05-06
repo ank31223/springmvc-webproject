@@ -29,20 +29,13 @@ public class ClientController {
 
 	@RequestMapping("/getAllClients")
 	public String getAllClients(Model model) {
-
 		List<Client> clients = clientServiceInterface.showAllClient();
 		model.addAttribute("clientList", clients);
-
 		return "client/clientHome";
 	}
 
 	@RequestMapping(path = "/addClient", method = RequestMethod.POST)
 	public RedirectView addEmployee(@ModelAttribute Client client, Model model) {
-
-		System.out.print("In AddController....................");
-		System.out.println(client.getClientName());
-		System.out.println(client.getClientAddress());
-
 		clientServiceInterface.addClient(client);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("/springproject1/client/getAllClients");
@@ -51,7 +44,6 @@ public class ClientController {
 
 	@RequestMapping("/getClientForm")
 	public String getClientForm() {
-
 		return "client/clientForm";
 	}
 
@@ -72,12 +64,7 @@ public class ClientController {
 
 	@RequestMapping(path = "/updateClient", method = RequestMethod.POST)
 	public RedirectView updateEmployee(@ModelAttribute Client client) {
-		System.out.println(client.getId());
-		System.out.println(client.getClientName());
-		System.out.println(client.getClientAddress());
-
 		clientServiceInterface.updateClient(client);
-
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("/springproject1/client/getAllClients");
 		return redirectView;
@@ -85,35 +72,29 @@ public class ClientController {
 
 	@RequestMapping("/clientEmployees/{id}")
 	public String employeeClients(@PathVariable("id") String clientId, Model model) {
-
 		Client client = clientServiceInterface.getClientById(clientId);
 		List<Employee> employeeList1 = clientServiceInterface.getAllEmployeesUnderClient(clientId);
 		List<Employee> employeeList2 = clientServiceInterface.getAllAssignableEmployees(clientId);
-
 		model.addAttribute("employeeList1", employeeList1);
 		model.addAttribute("employeeList2", employeeList2);
 		model.addAttribute("client", client);
-
 		return "client/clientEmployees";
 	}
 
 	@RequestMapping("/removeEmployeeFromClient/{clientId}/{employeeId}")
 	public RedirectView removeEmployeeFromClient(@PathVariable("clientId") String clientId,
 			@PathVariable("employeeId") String employeeId) {
-
 		System.out.println(clientId);
 		System.out.println(employeeId);
-		clientServiceInterface.removeEmployeeFromClient(clientId,employeeId);
+		clientServiceInterface.removeEmployeeFromClient(clientId, employeeId);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("/springproject1/client/clientEmployees/" + clientId);
 		return redirectView;
-
 	}
 
 	@RequestMapping("/addEmployeeToClient/{clientId}/{employeeId}")
 	public RedirectView addEmployeeToClient(@PathVariable("clientId") String clientId,
 			@PathVariable("employeeId") String employeeId) {
-		
 		clientServiceInterface.addEmployeeToClient(clientId, employeeId);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("/springproject1/client/clientEmployees/" + clientId);

@@ -28,12 +28,6 @@ public class EmployeeController {
 
 	@RequestMapping(path = "/addEmployee", method = RequestMethod.POST)
 	public RedirectView addEmployee(@ModelAttribute Employee employee, Model model) {
-
-		System.out.print("In AddController....................");
-		System.out.println(employee.getName());
-		System.out.println(employee.getGender());
-		System.out.println(employee.getAge());
-		System.out.println(employee.getEmail());
 		employeeServiceInterface.addEmployee(employee);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("/springproject1/employee/getAllEmployees");
@@ -42,16 +36,13 @@ public class EmployeeController {
 
 	@RequestMapping("/getEmployeeForm")
 	public String getEmployeeForm() {
-
 		return "employee/employeeForm";
 	}
 
 	@RequestMapping("/getAllEmployees")
 	public String getAllEmployees(Model model) {
-
 		List<Employee> employees = employeeServiceInterface.showAllEmployee();
 		model.addAttribute("employeeList", employees);
-
 		return "employee/employeeHome";
 	}
 
@@ -65,14 +56,7 @@ public class EmployeeController {
 
 	@RequestMapping(path = "/updateEmployee", method = RequestMethod.POST)
 	public RedirectView updateEmployee(@ModelAttribute Employee employee) {
-		System.out.println(employee.getId());
-		System.out.println(employee.getName());
-		System.out.println(employee.getGender());
-		System.out.println(employee.getAge());
-		System.out.println(employee.getEmail());
-
 		employeeServiceInterface.updateEmployee(employee);
-
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("/springproject1/employee/getAllEmployees");
 		return redirectView;
@@ -90,11 +74,9 @@ public class EmployeeController {
 		Employee employee = employeeServiceInterface.getEmployeeById(id);
 		List<Client> clientList1 = employeeServiceInterface.getAllClientsUnderEmployee(id);
 		List<Client> clientList2 = employeeServiceInterface.getAllAssignableClients(id);
-
 		model.addAttribute("clientList1", clientList1);
 		model.addAttribute("clientList2", clientList2);
 		model.addAttribute("employee", employee);
-
 		return "employee/employeeClients";
 	}
 
@@ -110,7 +92,6 @@ public class EmployeeController {
 	@RequestMapping("/removeClientFromEmployee/{employeeId}/{clientId}")
 	public RedirectView removeClientFromEmployee(@PathVariable("employeeId") String employeeId,
 			@PathVariable("clientId") String clientId) {
-
 		employeeServiceInterface.removeClientFromEmployee(employeeId, clientId);
 		RedirectView redirectView = new RedirectView();
 		redirectView.setUrl("/springproject1/employee/employeeClients/" + employeeId);

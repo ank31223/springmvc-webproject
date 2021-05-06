@@ -1,9 +1,7 @@
 package com.io.spring.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,7 +20,6 @@ public class Employee {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Client> clients;
-
 
 	public String getId() {
 		return id;

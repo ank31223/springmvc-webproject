@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -54,11 +53,12 @@ public class ClientDao {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
+
 		tx.begin();
 		List<Client> clientList = (List<Client>) session.createQuery("from Client").getResultList();
 		tx.commit();
-		session.close();
 
+		session.close();
 		return clientList;
 	}
 
@@ -68,7 +68,6 @@ public class ClientDao {
 
 		tx.begin();
 		Client client = session.get(Client.class, clientId);
-
 		tx.commit();
 		session.close();
 
@@ -76,7 +75,6 @@ public class ClientDao {
 	}
 
 	public void updateClient(Client client) {
-
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
 		tx.begin();
@@ -88,19 +86,11 @@ public class ClientDao {
 	public void addEmployeeToClientForEmployee(String clientId, Employee employee) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
-		
+
 		tx.begin();
 		session.flush();
 		Client client = (Client) session.get(Client.class, clientId);
-		
 		client.getEmployees().add(employee);
-		//client.getEmployees().add(employee);
-		
-		//session.saveOrUpdate(client);
-//		tx.commit();
-//		session.getTransaction().begin();
-//		session.detach(employee);
-//		client.getEmployees().add(employee);
 		tx.commit();
 		session.close();
 	}
@@ -109,26 +99,23 @@ public class ClientDao {
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
+
 		tx.begin();
-		
 		Client client = (Client) session.get(Client.class, clientId);
 		client.getEmployees().add(employee);
 		tx.commit();
-		
 		session.close();
 
 	}
 
 	public List<Employee> getAllEmployeesUnderClient(String clientId) {
-
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
-		tx.begin();
 
+		tx.begin();
 		Client client = (Client) session.get(Client.class, clientId);
 		List<Employee> employees = client.getEmployees();
 		tx.commit();
-
 		session.close();
 
 		return employees;
@@ -139,8 +126,8 @@ public class ClientDao {
 	public List<Client> getAllAssignableClients(List<String> idsList) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
-		tx.begin();
 
+		tx.begin();
 		System.out.print(idsList);
 		List<Client> list;
 		if (idsList.size() != 0) {
@@ -151,19 +138,16 @@ public class ClientDao {
 			System.out.print("Ankit.............");
 			list = (List<Client>) session.createQuery("from Client").list();
 		}
-
 		tx.commit();
 		session.close();
-
 		return list;
-
 	}
 
 	public void removeEmployeeFromClientForEmployee(String clientId, Employee employee) {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
-		tx.begin();
 
+		tx.begin();
 		Client client = (Client) session.get(Client.class, clientId);
 		client.getEmployees().remove(employee);
 		int i = 0;
@@ -175,17 +159,15 @@ public class ClientDao {
 		}
 		session.update(client);
 		tx.commit();
-
 		session.close();
 
 	}
 
 	public void removeEmployeeFromClient(String clientId, Employee employee) {
-
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.getTransaction();
-		tx.begin();
 
+		tx.begin();
 		Client client = (Client) session.get(Client.class, clientId);
 		System.out.println(client);
 		int i = 0;
@@ -197,7 +179,6 @@ public class ClientDao {
 		}
 		session.update(client);
 		tx.commit();
-
 		session.close();
 	}
 

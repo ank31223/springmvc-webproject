@@ -2,7 +2,6 @@ package com.io.spring.dto;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +24,6 @@ public class Client {
 
 	public Client() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Client(String id, String clientName, String clientAddress) {

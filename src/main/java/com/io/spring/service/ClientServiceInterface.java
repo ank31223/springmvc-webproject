@@ -2,8 +2,6 @@ package com.io.spring.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import com.io.spring.dto.Client;
 import com.io.spring.dto.Employee;
 
