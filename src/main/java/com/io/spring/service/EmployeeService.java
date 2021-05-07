@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.io.spring.commonutils.CommonUtils;
 import com.io.spring.dao.EmployeeDao;
 import com.io.spring.dto.Client;
 import com.io.spring.dto.Employee;
 
-@Component
+@Service
 public class EmployeeService implements EmployeeServiceInterface {
 	private EmployeeDao employeeDao;
 	private ClientServiceInterface clientServiceInterface;

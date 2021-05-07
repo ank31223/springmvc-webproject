@@ -8,12 +8,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.io.spring.dto.Client;
 import com.io.spring.dto.Employee;
 
-@Component
+@Repository
 public class EmployeeDao {
 
 	@Value("#{ T(com.io.spring.factory.SessionCreate).getSessionFactory() }")
